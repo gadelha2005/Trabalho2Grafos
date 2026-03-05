@@ -14,6 +14,9 @@ def grau(grafo, vertice):
 def dirac(grafo):
     num_vertices = len(grafo)
 
+    if num_vertices < 3:
+        return False
+
     for vertice in grafo:
         if grau(grafo, vertice) < num_vertices / 2:
             return False
@@ -23,6 +26,9 @@ def dirac(grafo):
 def ore(grafo):
     
     num_vertices = len(grafo)
+
+    if num_vertices < 3:
+        return False
 
     vertices = list(grafo.keys())
 
@@ -41,6 +47,10 @@ def ore(grafo):
 def bondy_chvatal(grafo):
     fechamento = copy.deepcopy(grafo)
     num_vertices = len(fechamento)
+
+    if num_vertices < 3:
+        return False
+
     houve_mudanca = True
     while houve_mudanca:
 
