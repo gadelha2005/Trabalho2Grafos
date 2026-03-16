@@ -118,8 +118,31 @@ for nome, grafo in grafos.items():
     print()
 
 
+def eh_conexo(grafo):
+    vertices = list(grafo.keys())
+    
+    if not vertices:
+        return True
+
+    visitados = set()
+    pilha = [vertices[0]]
+    visitados.add(vertices[0])
+
+    while pilha:
+        atual = pilha.pop()
+        for vizinho in grafo[atual]:
+            if vizinho not in visitados:
+                visitados.add(vizinho)
+                pilha.append(vizinho)
+
+    return len(visitados) == len(vertices)
+
 
 def euleriano(grafo):
+
+    if not eh_conexo(grafo):
+        return False
+
     vertices = list(grafo.keys())
     for vertice in vertices:
         if(grau(grafo , vertice) % 2 != 0):
@@ -131,6 +154,11 @@ def euleriano(grafo):
 
 
 def semi_euleriano(grafo):
+
+    if not eh_conexo(grafo):
+        return False
+    
+
     vertices = list(grafo.keys())
     verticesImpares = 0
 
